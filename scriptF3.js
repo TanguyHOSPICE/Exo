@@ -3,7 +3,8 @@
  Une fois ces conditions respectées, le formulaire peut être validé.*/
 //=====Declaration formulaire - Start
 (function () {
-	let form = document.getElementsByTagName('form');
+	'use strict';
+	let form = document.getElementById('form');
 
 	form.addEventListener(
 		'submit',
@@ -13,6 +14,12 @@
 					if (!validateFields(input)) {
 						e.preventDefault();
 						e.stopPropagation();
+
+						input.classList.remove('is-valid');
+						input.classList.add('is-invalid');
+					} else {
+						input.classList.remove('is-invalid');
+						input.classList.add('is-valid');
 					}
 				}
 			});
@@ -21,3 +28,32 @@
 	);
 })();
 //=====Declaration formulaire - End
+//=====Functions Validations - Start
+function validateRequired(input) {
+	return !(input.value == null || input.value == '');
+}
+function validateTxt(input) {
+	return input.value.match(' /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*.w{2,4}))$/');
+}
+function validateEmail(input) {
+	let EMAIL = input.value;
+	let POSAT = EMAIL.indexOf('@');
+	let POSDOT = EMAIL.lastIndexOf('.');
+
+	return !(POSAT < 1 || POSDOT - POSAT < 2);
+}
+//=====Functions Validations - End
+//===Validation formulaire - Start
+const validateFields = (input) => {
+	let fieldName = input.name;
+
+	if (fieldName == 'email') {
+		if (!validateRequired(input)) {
+			return false;
+		}
+		if (!validateEmail(input)) {
+			return false;
+		}
+		return true;
+	}
+};
