@@ -3,7 +3,7 @@
 -Enfin, vous créerez un élément blur qui annulera les effets du focus. */
 let allInputs = document.getElementsByClassName('inputPinkOnFocus');
 //*BOUCLE FOR EACH
-/* Array.from(allInputs).forEach((input) => {
+Array.from(allInputs).forEach((input) => {
 	input.addEventListener('focus', (e) => {
 		e.target.style.background = 'pink';
 		e.target.style.color = 'blue';
@@ -13,7 +13,7 @@ let allInputs = document.getElementsByClassName('inputPinkOnFocus');
 		e.target.style.background = '';
 		e.target.style.color = '';
 	});
-}); */
+});
 //*BOUCLE FOR
 for (let i = 0; i < allInputs.length; i++) {
 	allInputs[i].addEventListener('focus', (e) => {
