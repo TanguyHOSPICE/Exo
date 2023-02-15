@@ -2,9 +2,9 @@
  Contrôlez que le mot de passe comporte au moins 8 caractères.
  Une fois ces conditions respectées, le formulaire peut être validé.*/
 //=====Declaration formulaire - Start
-(function () {
+/* (function () {
 	'use strict';
-	let form = document.getElementById('form');
+	let form = document.querySelector('form');
 
 	form.addEventListener(
 		'submit',
@@ -46,6 +46,7 @@ function validateEmail(input) {
 //===Validation formulaire - Start
 const validateFields = (input) => {
 	let fieldName = input.name;
+	let error = document.getElementById('error');
 
 	if (fieldName == 'email') {
 		if (!validateRequired(input)) {
@@ -57,3 +58,19 @@ const validateFields = (input) => {
 		return true;
 	}
 };
+ */
+//====Solution Simple
+let email = document.getElementById('email');
+let error = document.getElementById('error');
+let form = document.querySelector('form');
+
+var regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
+
+email.addEventListener('input', (event) => {
+	if (!regexEmail.test(event.target.value)) {
+		console.dir(regexEmail);
+		error.innerText = "Le format de l'email est incorrect";
+	} else {
+		error.innerText = '';
+	}
+});
