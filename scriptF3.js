@@ -63,13 +63,22 @@ const validateFields = (input) => {
 let email = document.getElementById('email');
 let error = document.getElementById('error');
 let form = document.querySelector('form');
+let password = document.getElementById('password');
 
 var regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
 
-email.addEventListener('input', (event) => {
-	if (!regexEmail.test(event.target.value)) {
+email.addEventListener('input', (e) => {
+	if (!regexEmail.test(e.target.value)) {
 		console.dir(regexEmail);
 		error.innerText = "Le format de l'email est incorrect";
+	} else {
+		error.innerText = '';
+	}
+});
+
+password.addEventListener('input', (e) => {
+	if (e.target.value.length < 8) {
+		error.innerText = 'Le format du mdp est incorrect, il vous faut au moins 8 charactères';
 	} else {
 		error.innerText = '';
 	}
