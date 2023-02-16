@@ -66,7 +66,7 @@ let form = document.querySelector('form');
 let password = document.getElementById('password');
 
 var regexEmail = /^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\.\w{2,4}))$/;
-
+//Vérif Email
 email.addEventListener('input', (e) => {
 	if (!regexEmail.test(e.target.value)) {
 		console.dir(regexEmail);
@@ -75,11 +75,18 @@ email.addEventListener('input', (e) => {
 		error.innerText = '';
 	}
 });
-
+//Vérif Password
 password.addEventListener('input', (e) => {
 	if (e.target.value.length < 8) {
 		error.innerText = 'Le format du mdp est incorrect, il vous faut au moins 8 charactères';
 	} else {
 		error.innerText = '';
+	}
+});
+//Vérif Formulaire
+form.addEventListener('submit', (event) => {
+	if (email.innerText == '' || password.innerText !== '') {
+		event.preventDefault();
+		alert("Le formulaire contient des erreurs et n'a pas été envoyé");
 	}
 });
